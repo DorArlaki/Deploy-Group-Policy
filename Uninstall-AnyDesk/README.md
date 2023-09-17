@@ -21,6 +21,11 @@ This script performs the following actions:
 2. Configure a Group Policy Object (GPO) in your Active Directory environment.
 3. Add this script to the GPO and set it to run during computer startup or shutdown.
 
+**Important Note:**
+- Share the GPO ShareScripts folder on the network.
+- Ensure that the GPO ShareScripts folder is shared with the `Domain Computers` group.
+- On the security tab of the shared folder, grant the `Domain Computers` group `read and execute` permissions.
+
 ## 🚨 Important Notes
 - Always run the script with sufficient privileges. Administrative rights are necessary for some actions.
 - This script is designed to remove AnyDesk. Use with caution and ensure it's applied to the correct target machines.
