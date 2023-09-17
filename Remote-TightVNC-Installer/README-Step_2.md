@@ -1,12 +1,5 @@
 ## 📥 Step 2: Place the Downloaded MSI Installer File
 
-**Before you start, make sure you've downloaded the TightVNC MSI installer file from the official website.**
-
-**Step 1:** Download the TightVNC MSI installer from the official website:
-[Download TightVNC MSI Installer](https://www.tightvnc.com/download.php)
-
-**Step 2:** Place the downloaded MSI installer file in a shared folder that's accessible from your Active Directory server.
-
 **Here's how:**
 
 1. **Locate the TightVNC MSI installer file on your computer.**
