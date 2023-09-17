@@ -37,4 +37,4 @@ We welcome contributions! Feel free to open an issue or submit a pull request to
 ## 📧 Contact
 If you have any questions or need assistance, don't hesitate to reach out.
 
-Happy Scripting! 😄
+Happy Scripting!  😄
