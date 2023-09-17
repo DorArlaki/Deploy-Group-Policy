@@ -55,7 +55,6 @@ Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbind
 
 Now, the importance of applying the GPO to the "Domain Computers" group is high.
 
-
 ### POC
-![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/890c0ce2-527e-41a2-ba92-05e220a535a1)
+![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/218462b1-d704-4296-ab98-f97063027495)
 
