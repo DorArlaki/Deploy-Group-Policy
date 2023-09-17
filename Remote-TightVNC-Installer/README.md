@@ -54,3 +54,8 @@ $password = "your_password"  # Change this to your desired password
 Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
 
 Now, the importance of applying the GPO to the "Domain Computers" group is high.
+
+
+### POC
+![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/890c0ce2-527e-41a2-ba92-05e220a535a1)
+
