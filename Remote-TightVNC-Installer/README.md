@@ -40,8 +40,6 @@ $password = "your_password"  # Change this to your desired password
 3. Copy and paste the content of "TightVNC_Installation_DC_Script.ps1" into PowerShell ISE and run the code.
 ![DC-TightVNC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/3a572ca9-236c-4966-bc3f-edb4af7a1f76)
 
-**Wizardry Unleashed**
-
 ### Step 5: Set up Group Policy:
 
 1. Create a new Group Policy Object (GPO) or modify an existing one in your Active Directory domain.
