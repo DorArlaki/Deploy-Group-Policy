@@ -35,5 +35,3 @@
 10. **Click "Apply" and then "OK" to close the folder properties window.**
 
 **You've successfully placed the TightVNC MSI installer file in a shared folder accessible from your Active Directory server. You're now ready for the next steps in the deployment process.**
-
-![Shared Folder](https://github.com/DorArlaki/Remote-TightVNC-Installer/assets/107101354/50c64be4-9a53-43bf-9760-f35631f94b46)
