@@ -1,55 +1,57 @@
-# TightVNC Installer Script
+# 🚀 Welcome to the TightVNC GPO Deployment Guide!
 
-This script automates the installation of TightVNC Server on Windows PCs via Group Policy (GPO). It allows for a silent installation and sets a predefined password for VNC authentication.
+Are you tired of manually installing TightVNC on your Windows PCs within an Active Directory environment? Say goodbye to the hassle with our straightforward TightVNC Group Policy (GPO) deployment guide. ✨
 
-## Requirements
+## Requirements 🧙‍♂️
 
-- Active Directory environment
-- Administrative access to the target PCs
-- The TightVNC MSI installer file
+Before you start, make sure you have:
 
-## Download TightVNC Installer
+- An Active Directory environment in place.
+- Administrative access to the target PCs.
+- The TightVNC MSI installer file.
 
-You can download the TightVNC MSI installer from the official TightVNC website:
+## 📥 Download the TightVNC Installer
 
+### Step 1: Download the TightVNC MSI installer from the official website:
 [Download TightVNC MSI Installer](https://www.tightvnc.com/download.php)
 
-## Usage
+**Step 2:** Place the downloaded MSI installer file in a shared folder that's accessible from your Active Directory server.
+[README-Step_2.md](/README-Step_2.md)
 
-1. Download the TightVNC MSI installer from the provided link.
+## 🛠️ Configuration (Modify `install-tightvnc.ps1`)
 
-2. Place the MSI installer file in a shared directory accessible from your Active Directory server.
+### Step 3: Modify the script (`install-tightvnc.ps1`) as follows:
 
-3. Modify the script (`install-tightvnc.ps1`) as needed. Specifically, set the `$pcInstallerPath` variable to the UNC path of the MSI installer on the shared directory and customize the `$password` variable with your desired VNC password.
-
-4. Create a new Group Policy Object (GPO) or edit an existing one in your Active Directory environment.
-
-5. Navigate to the "Computer Configuration" section of the GPO, and under "Policies," select "Windows Settings."
-
-6. Right-click on "Scripts (Startup/Shutdown)" and choose "Add a Script."
-
-7. Browse and select the modified `install-tightvnc.ps1` script.
-
-8. Link the GPO to the Organizational Unit (OU) containing the target PCs.
-
-<<<<<<< HEAD
-9. When the PCs receive the GPO, TightVNC Server will be silently installed and configured with the specified password.
-=======
+```powershell
 # Define the UNC path to the TightVNC installer on the PC
-<<<<<<< HEAD
-$pcInstallerPath = "\\<DC_IP>\<PathTo>\tightvnc-2.8.81-gpl-setup-64bit.msi"
->>>>>>> d8e7e7e (README.md)
-=======
-$pcInstallerPath = "\\<DC_IP>\<PathTo>\tightvnc-2.8.81-gpl-setup-64bit.msi"   # Change this to your desired IP + Path for Example : \\192.168.1.100\ShareFolder\tightvnc-2.8.81-gpl-setup-64bit.msi
->>>>>>> fdcc8c6 (README.md)
+$pcInstallerPath = "\\<DC_IP>\<PathTo>\tightvnc-2.8.81-gpl-setup-64bit.msi"   # Change this to your desired IP + Path
 
-<<<<<<< HEAD
-## Note
-=======
 # Define the password
 $password = "your_password"  # Change this to your desired password
->>>>>>> 642d059 (README.md)
+```
+- Set the desired VNC password in `$password`.
+- Update `$pcInstallerPath` to point to the `.msi` file path on the PC.
 
-This script is intended for automating the installation of TightVNC Server with preconfigured settings within an Active Directory environment. Ensure that you have the necessary permissions to deploy software via GPO.
+### Step 4: Install TightVNC on your domain controller:
 
-For more information about TightVNC, visit the [TightVNC website](https://www.tightvnc.com/).
+1. Log in to your domain controller with administrative privileges.
+2. Open PowerShell ISE as an administrator.
+3. Copy and paste the content of "TightVNC_Installation_DC_Script.ps1" into PowerShell ISE and run the code.
+
+**Wizardry Unleashed**
+
+### Step 5: Set up Group Policy:
+
+1. Create a new Group Policy Object (GPO) or modify an existing one in your Active Directory domain.
+2. Navigate to "Computer Configuration" in the GPO and select "Windows Settings" under "Policies."
+3. Under GPO settings, go to "Scripts" and select "Startup/Shutdown."
+4. Under the 'PowerShell Scripts' tab, click 'Add' -> 'Browse.' Paste the 'install-tightvnc.ps1' script (modified in Step 3), and press 'OK.' Save your changes.
+
+### Step 6: Apply the GPO:
+
+1. Link the GPO to the Organizational Unit (OU) containing the target PCs, ensuring that the members of the GPO are the "Domain Computers" group.
+2. Verify read and execute permissions and GPO Security Filtering.
+
+Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
+
+Now, the importance of applying the GPO to the "Domain Computers" group is high.
