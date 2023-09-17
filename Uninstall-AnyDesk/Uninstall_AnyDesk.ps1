@@ -40,15 +40,10 @@ foreach ($UserProfile in $UserProfiles) {
             # Check if any matching files were found
             if ($FilesToRemove.Count -gt 0) {
                 foreach ($File in $FilesToRemove) {
-                    # Debugging: Check if the file exists before removal
-                    Write-Host "File $($File.Name) exists before removal: $(Test-Path -Path $File.FullName)"
-
                     # Try to remove each matching file
                     try {
                         Remove-Item -Path $File.FullName -Force
-                        # Debugging: Check if the file exists after removal
                         Write-Host "File $($File.Name) has been successfully deleted from $($UserProfile.LocalPath)\Downloads."
-                        Write-Host "File $($File.Name) exists after removal: $(Test-Path -Path $File.FullName)"
                     } catch {
                         Write-Host "Error deleting file $($File.Name): $($_.Exception.Message)"
                     }
@@ -62,6 +57,36 @@ foreach ($UserProfile in $UserProfiles) {
     } else {
         Write-Host "Downloads folder not found for $($UserProfile.LocalPath)."
     }
+}
+
+# Define the path to the AnyDesk Start Menu folder
+$AnyDeskStartMenuPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AnyDesk"
+
+# Check if the Start Menu folder exists
+if (Test-Path $AnyDeskStartMenuPath) {
+    try {
+        # Uninstall AnyDesk using the shortcut
+        $UninstallShortcutPath = Join-Path -Path $AnyDeskStartMenuPath -ChildPath "Uninstall AnyDesk.lnk"
+        if (Test-Path $UninstallShortcutPath) {
+            $WScriptShell = New-Object -ComObject WScript.Shell
+            $Shortcut = $WScriptShell.CreateShortcut($UninstallShortcutPath)
+            $UninstallCommand = $Shortcut.TargetPath
+            if (Test-Path $UninstallCommand) {
+                # Run the uninstall command
+                Start-Process -FilePath $UninstallCommand -ArgumentList "/S" -Wait
+                Write-Host "AnyDesk has been uninstalled using the shortcut."
+            }
+        }
+
+        # Remove the AnyDesk Start Menu folder
+        Remove-Item -Path $AnyDeskStartMenuPath -Force -Recurse
+        Write-Host "AnyDesk Start Menu folder has been successfully deleted."
+    } catch {
+        $ErrorMessage = $_.Exception.Message
+        Write-Host "Error uninstalling AnyDesk: $ErrorMessage"
+    }
+} else {
+    Write-Host "AnyDesk Start Menu folder not found."
 }
 
 Write-Host "AnyDesk removal and cleanup completed."
