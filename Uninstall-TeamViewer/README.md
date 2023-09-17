@@ -36,9 +36,14 @@ Follow these steps to deploy the script via Group Policy:
 
    - Click "OK" to add the script.
 
-4. **Important Note: Share the GPO ShareScripts Folder**:
+4. **Important Note: Share the GPO ShareScripts Folder and Set Permissions**:
 
-   - Ensure that the GPO ShareScripts folder is shared with the "Domain Computers" group.
+- Share the GPO ShareScripts folder on the network.
+
+- Ensure that the GPO ShareScripts folder is shared with the *Domain Computers* group.
+
+- On the security tab of the shared folder, grant the "Domain Computers" group read and execute permissions.
+
 
 5. **Apply the GPO**:
 
