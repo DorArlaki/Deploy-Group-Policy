@@ -55,6 +55,4 @@ $password = "your_password"  # Change this to your desired password
 
 ### POC
 ![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/218462b1-d704-4296-ab98-f97063027495)
-
-
 Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
