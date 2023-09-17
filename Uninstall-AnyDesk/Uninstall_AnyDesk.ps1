@@ -24,12 +24,21 @@ if (Test-Path $AnyDeskPath) {
     Write-Host "AnyDesk was not found installed."
 }
 
+<<<<<<< HEAD
 # Get all user profiles on the computer
 $UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }
 
 foreach ($UserProfile in $UserProfiles) {
     # Define the path to the user's Downloads folder
     $DownloadsFolder = Join-Path -Path $UserProfile.LocalPath -ChildPath "Downloads"
+=======
+# Define the path to the user's Downloads folder
+$DownloadsFolder = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::Userprofile) + "\Downloads"
+
+try {
+    # Get all files with names that start with "AnyDesk(" and end with ").exe"
+    $FilesToRemove = Get-ChildItem -Path $DownloadsFolder -Filter "AnyDesk(*).exe"
+>>>>>>> 58b1d5de545972e702c3213465fc148c6d7d5877
 
     # Check if the Downloads folder exists
     if (Test-Path -Path $DownloadsFolder) {
@@ -55,8 +64,30 @@ foreach ($UserProfile in $UserProfiles) {
             Write-Host "Error: $($error[0])"
         }
     } else {
+<<<<<<< HEAD
         Write-Host "Downloads folder not found for $($UserProfile.LocalPath)."
+=======
+        Write-Host "No matching files found for deletion in $DownloadsFolder."
+>>>>>>> 58b1d5de545972e702c3213465fc148c6d7d5877
     }
 }
 
+<<<<<<< HEAD
 Write-Host "AnyDesk removal and cleanup completed."
+=======
+# Define the path to the main AnyDesk executable in the user's Downloads folder
+$AnyDeskExecutable = Join-Path -Path $DownloadsFolder -ChildPath "AnyDesk.exe"
+
+try {
+    # Check if the main AnyDesk executable exists in the user's Downloads folder and remove it
+    if (Test-Path -Path $AnyDeskExecutable) {
+        [System.IO.File]::Delete($AnyDeskExecutable)
+        Write-Host "Main AnyDesk executable has been successfully deleted."
+    } else {
+        Write-Host "Main AnyDesk executable not found in $DownloadsFolder."
+    }
+}
+catch {
+    Write-Host "Error: $($error[0])"
+}
+>>>>>>> 58b1d5de545972e702c3213465fc148c6d7d5877
