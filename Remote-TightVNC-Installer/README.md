@@ -53,6 +53,12 @@ $password = "your_password"  # Change this to your desired password
 
 - Now, the importance of applying the GPO to the "Domain Computers" group is high.
 
+**Important Note:**
+-  Share the GPO ShareScripts folder on the network.
+-  Ensure that the GPO ShareScripts folder is shared with the Domain Computers group.
+-  On the security tab of the shared folder, grant the Domain Computers group read and execute permissions.
+
+
 ### POC
 ![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/218462b1-d704-4296-ab98-f97063027495)
 Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
