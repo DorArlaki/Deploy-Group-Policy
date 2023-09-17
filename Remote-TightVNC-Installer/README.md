@@ -29,6 +29,7 @@ $pcInstallerPath = "\\<DC_IP>\<PathTo>\tightvnc-2.8.81-gpl-setup-64bit.msi"   # 
 # Define the password
 $password = "your_password"  # Change this to your desired password
 ```
+![TightVNC-PC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/7586df5e-6a26-44ef-82e8-c097d530eb39)
 - Set the desired VNC password in `$password`.
 - Update `$pcInstallerPath` to point to the `.msi` file path on the PC.
 
@@ -37,6 +38,7 @@ $password = "your_password"  # Change this to your desired password
 1. Log in to your domain controller with administrative privileges.
 2. Open PowerShell ISE as an administrator.
 3. Copy and paste the content of "TightVNC_Installation_DC_Script.ps1" into PowerShell ISE and run the code.
+![DC-TightVNC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/83969f89-d329-457a-8ae7-088034f74bf7)
 
 **Wizardry Unleashed**
 
