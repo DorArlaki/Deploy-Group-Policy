@@ -1,3 +1,6 @@
+# Set the execution policy to RemoteSigned
+Set-ExecutionPolicy RemoteSigned -Scope Process -Force
+
 # Check if AnyDesk is running and terminate it
 $AnyDeskProcesses = Get-Process -Name AnyDesk -ErrorAction SilentlyContinue
 if ($AnyDeskProcesses) {
@@ -88,5 +91,8 @@ if (Test-Path $AnyDeskStartMenuPath) {
 } else {
     Write-Host "AnyDesk Start Menu folder not found."
 }
+
+# Reset the execution policy to Restrict
+Set-ExecutionPolicy Restricted -Scope Process -Force
 
 Write-Host "AnyDesk removal and cleanup completed."
