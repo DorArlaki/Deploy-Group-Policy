@@ -1,53 +1,40 @@
-# AnyDesk Silent Uninstall GPO Script
+# 🚀 Deploy Group Policy: Uninstall AnyDesk Script 🚀
 
-This PowerShell script is intended to be deployed as a Group Policy Object (GPO) for silently uninstalling the AnyDesk application on Windows computers within a domain. The script automates the process, ensuring that there is no user interaction required during the uninstallation.
+Welcome to the Deploy Group Policy Uninstall AnyDesk Script! This PowerShell script is designed to help you efficiently and effortlessly uninstall AnyDesk from your Windows computers through Group Policy. Say goodbye to unwanted remote desktop software!
 
-## Prerequisites
+## 📋 Overview
 
-Before deploying this script as a GPO, ensure the following prerequisites are met:
+This script performs the following actions:
+- Checks if AnyDesk is running and gracefully terminates it.
+- Removes the AnyDesk installation directory from `C:\Program Files (x86)\AnyDesk`.
+- Cleans up AnyDesk executable files from the user's Downloads folder.
+- Ensures the main AnyDesk executable is deleted from the Downloads folder.
 
-1. **PowerShell Execution Policy**: PowerShell scripts must be allowed to run on the target computers. Ensure that the execution policy on target computers is appropriately configured to allow script execution. You can set the execution policy to "Unrestricted" or "Bypass" depending on your security requirements.
+## 🛠️ Usage
 
-2. **Administrative Privileges**: The script must be executed with administrative privileges on target computers. Make sure the GPO is configured to run with the necessary permissions.
+### Pre-Requisites
+1. Ensure your target Windows computers have PowerShell enabled.
+2. Configure this script to run through Group Policy.
 
-3. **Active Directory Domain**: Ensure that the target computers are part of an Active Directory domain and are properly organized within Organizational Units (OUs) where the GPO can be applied.
+### Deploying with Group Policy
+1. Copy the PowerShell script (`Uninstall-AnyDesk.ps1`) to a location accessible to your target machines.
+2. Configure a Group Policy Object (GPO) in your Active Directory environment.
+3. Add this script to the GPO and set it to run during computer startup or shutdown.
 
-## GPO Deployment Steps
+## 🚨 Important Notes
+- Always run the script with sufficient privileges. Administrative rights are necessary for some actions.
+- This script is designed to remove AnyDesk. Use with caution and ensure it's applied to the correct target machines.
 
-Follow these steps to deploy the script as a GPO:
+## 🧹 Cleanup
+Remember, a clean computer is a happy computer! This script helps keep your network clean by removing unwanted AnyDesk installations.
 
-1. **Save the Script**: Save this script as "UninstallAnyDesk.ps1."
+## 📜 License
+This script is provided as-is, without any warranty. You are free to modify and distribute it according to your needs.
 
-2. **Configure the GPO**: In your Active Directory environment, create or modify a GPO to apply this script. You can name the GPO appropriately, such as "Uninstall AnyDesk."
+## 🙌 Contributing
+We welcome contributions! Feel free to open an issue or submit a pull request to improve this script.
 
-3. **Edit the GPO**: Open the GPO for editing and navigate to "Computer Configuration" > "Policies" > "Windows Settings" > "Scripts (Startup/Shutdown)."
+## 📧 Contact
+If you have any questions or need assistance, don't hesitate to reach out.
 
-4. **Add the Script**: Double-click on "Startup." Click "Add" and provide the UNC path to the "UninstallAnyDesk.ps1" script. For example: `\\Server\Share\UninstallAnyDesk.ps1`.
-
-5. **Apply the GPO**: Link the GPO to the Organizational Unit (OU) containing the target computers where AnyDesk needs to be uninstalled. Ensure that the GPO has the necessary permissions to execute scripts.
-
-6. **GPO Behavior**: Configure the GPO to run scripts during computer startup. This ensures that the script is executed silently without any user interaction.
-
-7. **Testing**: Before deploying the GPO in a production environment, thoroughly test it on a limited number of target computers to ensure it works as expected.
-
-## Script Behavior
-
-- The script checks if AnyDesk is running and terminates any running processes.
-- It defines the path to the AnyDesk installation directory by default as "C:\Program Files (x86)\AnyDesk."
-- It removes the AnyDesk installation directory, waits for a moment, and checks if the directory still exists.
-- If the installation directory is still present, it forcefully deletes it.
-- You can enable additional cleanup or logging as needed by uncommenting the relevant lines in the script.
-
-## Important Notes
-
-- Use this script responsibly and ensure that it aligns with your organization's policies and procedures.
-- Always backup important data and configurations before running scripts that modify or uninstall software.
-- Test the GPO and script in a controlled environment before deploying them in a production environment to avoid unexpected issues.
-
-## License
-
-This script is provided as-is without any warranties. You may use and modify it according to your needs, but use it at your own risk. There is no official support provided for this script.
-
----
-
-For more information and support, contact the script author or your organization's IT department.
+Happy Scripting! 😄
