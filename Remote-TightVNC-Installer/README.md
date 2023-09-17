@@ -38,7 +38,7 @@ $password = "your_password"  # Change this to your desired password
 1. Log in to your domain controller with administrative privileges.
 2. Open PowerShell ISE as an administrator.
 3. Copy and paste the content of "TightVNC_Installation_DC_Script.ps1" into PowerShell ISE and run the code.
-![DC-TightVNC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/83969f89-d329-457a-8ae7-088034f74bf7)
+![DC-TightVNC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/3a572ca9-236c-4966-bc3f-edb4af7a1f76)
 
 **Wizardry Unleashed**
 
