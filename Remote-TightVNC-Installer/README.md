@@ -55,8 +55,8 @@ $password = "your_password"  # Change this to your desired password
 
 **Important Note:**
 -  Share the GPO ShareScripts folder on the network.
--  Ensure that the GPO ShareScripts folder is shared with the Domain Computers group.
--  On the security tab of the shared folder, grant the Domain Computers group read and execute permissions.
+-  Ensure that the GPO ShareScripts folder is shared with the `Domain Computers group`.
+-  On the security tab of the shared folder, grant the `Domain Computers` group `read and execute` permissions.
 
 
 ### POC
