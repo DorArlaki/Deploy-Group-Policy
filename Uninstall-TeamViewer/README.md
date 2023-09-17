@@ -53,10 +53,3 @@ Follow these steps to deploy the script via Group Policy:
 
 - Be cautious when using scripts that modify or uninstall software. Always backup important data before running such scripts.
 
-## Support
-
-If you encounter issues or need assistance, feel free to [open an issue](https://github.com/DorArlaki/TeamViewer-Removal-Script/issues) in this repository.
-
-## License
-
-This script is licensed under the [MIT License](LICENSE).
