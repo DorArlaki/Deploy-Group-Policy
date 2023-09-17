@@ -51,10 +51,10 @@ $password = "your_password"  # Change this to your desired password
 1. Link the GPO to the Organizational Unit (OU) containing the target PCs, ensuring that the members of the GPO are the "Domain Computers" group.
 2. Verify read and execute permissions and GPO Security Filtering.
 
-Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
-
-Now, the importance of applying the GPO to the "Domain Computers" group is high.
+- Now, the importance of applying the GPO to the "Domain Computers" group is high.
 
 ### POC
 ![POC](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/218462b1-d704-4296-ab98-f97063027495)
 
+
+Feel the magic, embrace the ease, and let your VNC GPO Deployment be a spellbinding experience! 🪄✨
