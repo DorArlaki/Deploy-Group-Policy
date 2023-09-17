@@ -1,13 +1,13 @@
 # Check if AnyDesk is running and terminate it
-$AnyDeskProcess = Get-Process -Name AnyDesk -ErrorAction SilentlyContinue
-if ($AnyDeskProcess) {
-    $AnyDeskProcess | ForEach-Object {
+$AnyDeskProcesses = Get-Process -Name AnyDesk -ErrorAction SilentlyContinue
+if ($AnyDeskProcesses) {
+    $AnyDeskProcesses | ForEach-Object {
         $_.Kill()
         $_.WaitForExit()
     }
 }
 
-# Define the path to the AnyDesk installation directory
+# Define the path to the AnyDesk installation directory (update this path if needed)
 $AnyDeskPath = "C:\Program Files (x86)\AnyDesk"
 
 # Check if AnyDesk is installed
@@ -16,57 +16,47 @@ if (Test-Path $AnyDeskPath) {
         # Remove the AnyDesk installation directory forcefully
         Remove-Item -Path $AnyDeskPath -Force -Recurse
         Write-Host "AnyDesk installation directory has been successfully deleted."
-
-        # Perform any additional cleanup or logging as needed
-        # For example, you can write a log entry here to record the uninstallation.
-        # Write-Output "AnyDesk has been uninstalled on $($env:COMPUTERNAME)" | Out-File -Append -FilePath "C:\Path\To\Uninstall_Log.txt"
-
     } catch {
-        # Handle errors and log them
         $ErrorMessage = $_.Exception.Message
-        # Write-Output "Error uninstalling AnyDesk: $ErrorMessage" | Out-File -Append -FilePath "C:\Path\To\Uninstall_Log.txt"
+        Write-Host "Error uninstalling AnyDesk: $ErrorMessage"
     }
 } else {
-    # Log that AnyDesk was not found
-    # Write-Output "AnyDesk was not found on $($env:COMPUTERNAME)" | Out-File -Append -FilePath "C:\Path\To\Uninstall_Log.txt"
+    Write-Host "AnyDesk was not found installed."
 }
 
-# Define the path to the folder containing AnyDesk executable files
-$Folder = "C:\Users\bar\Downloads"
+# Get all user profiles on the computer
+$UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }
 
-try {
-    # Get all files with names that start with "AnyDesk(" and end with ").exe"
-    $FilesToRemove = Get-ChildItem -Path $Folder -Filter "AnyDesk(*).exe"
+foreach ($UserProfile in $UserProfiles) {
+    # Define the path to the user's Downloads folder
+    $DownloadsFolder = Join-Path -Path $UserProfile.LocalPath -ChildPath "Downloads"
 
-    # Check if any matching files were found
-    if ($FilesToRemove.Count -gt 0) {
-        foreach ($File in $FilesToRemove) {
-            # Try to remove each matching file
-            [System.IO.File]::Delete($File.FullName)
-            Write-Host "File $($File.Name) has been successfully deleted."
+    # Check if the Downloads folder exists
+    if (Test-Path -Path $DownloadsFolder) {
+        try {
+            # Get all files with names that start with "AnyDesk(" and end with ").exe"
+            $FilesToRemove = Get-ChildItem -Path $DownloadsFolder -Filter "AnyDesk*.exe"
+
+            # Check if any matching files were found
+            if ($FilesToRemove.Count -gt 0) {
+                foreach ($File in $FilesToRemove) {
+                    # Try to remove each matching file
+                    try {
+                        Remove-Item -Path $File.FullName -Force
+                        Write-Host "File $($File.Name) has been successfully deleted from $($UserProfile.LocalPath)\Downloads."
+                    } catch {
+                        Write-Host "Error deleting file $($File.Name): $($_.Exception.Message)"
+                    }
+                }
+            } else {
+                Write-Host "No matching files found for deletion in $($UserProfile.LocalPath)\Downloads."
+            }
+        } catch {
+            Write-Host "Error: $($error[0])"
         }
     } else {
-        Write-Host "No matching files found for deletion."
+        Write-Host "Downloads folder not found for $($UserProfile.LocalPath)."
     }
-} catch {
-    Write-Host "Error: $($error[0])"
 }
 
-# Define the path to the main AnyDesk executable
-$AnyDeskExecutable = "C:\Users\bar\Downloads\AnyDesk.exe"
-
-try {
-    # Check if the main AnyDesk executable exists and remove it
-    if (Test-Path -Path $AnyDeskExecutable) {
-        [System.IO.File]::Delete($AnyDeskExecutable)
-        Write-Host "Main AnyDesk executable has been successfully deleted."
-    } else {
-        Write-Host "Main AnyDesk executable not found."
-    }
-} catch {
-    Write-Host "Error: $($error[0])"
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 6ac80d70c9c44fcf9e7e03b67f5171014e33a158
+Write-Host "AnyDesk removal and cleanup completed."
