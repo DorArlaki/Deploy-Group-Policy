@@ -7,6 +7,7 @@ This PowerShell script is designed for administrators to remove TeamViewer from 
 1. Uninstalls TeamViewer silently.
 2. Removes TeamViewer executable files from all user profiles' Downloads folders.
 3. Removes TeamViewer default installation folders.
+
 ## Prerequisites
 
 Before deploying this script via Group Policy, ensure the following:
@@ -35,13 +36,17 @@ Follow these steps to deploy the script via Group Policy:
 
    - Click "OK" to add the script.
 
-4. **Apply the GPO**:
+4. **Share the GPO ShareScripts Folder**:
+
+   - Ensure that the GPO ShareScripts folder is shared with the "Domain Computers" group.
+
+5. **Apply the GPO**:
 
    - Link the GPO to the Organizational Unit (OU) containing the target computer objects.
 
    - Ensure that the GPO is correctly applied to the target computers.
 
-5. **Monitor Execution**:
+6. **Monitor Execution**:
 
    - The script will run at startup, removing TeamViewer silently.
 
@@ -52,4 +57,3 @@ Follow these steps to deploy the script via Group Policy:
 - This script is designed for removing TeamViewer from Windows computers via Group Policy. Ensure that it's used responsibly and in compliance with your organization's policies.
 
 - Be cautious when using scripts that modify or uninstall software. Always backup important data before running such scripts.
-
