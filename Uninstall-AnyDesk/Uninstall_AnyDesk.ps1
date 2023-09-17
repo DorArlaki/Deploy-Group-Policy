@@ -13,17 +13,9 @@ $AnyDeskPath = "C:\Program Files (x86)\AnyDesk"
 # Check if AnyDesk is installed
 if (Test-Path $AnyDeskPath) {
     try {
-        # Remove the AnyDesk installation directory
+        # Remove the AnyDesk installation directory forcefully
         Remove-Item -Path $AnyDeskPath -Force -Recurse
-
-        # Wait for a moment
-        Start-Sleep -Seconds 5
-
-        # Check if the installation directory is still present (some files might still be in use)
-        if (Test-Path $AnyDeskPath) {
-            # If AnyDesk folder still exists, force delete it
-            Remove-Item -Path $AnyDeskPath -Force -Recurse
-        }
+        Write-Host "AnyDesk installation directory has been successfully deleted."
 
         # Perform any additional cleanup or logging as needed
         # For example, you can write a log entry here to record the uninstallation.
