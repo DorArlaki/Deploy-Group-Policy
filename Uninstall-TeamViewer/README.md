@@ -2,62 +2,74 @@
 
 ## Overview
 
-This PowerShell script is designed to be deployed as a startup Group Policy Object (GPO) to remove TeamViewer from Windows computers. It performs the following tasks:
+Welcome to the TeamViewer Removal Script! This handy PowerShell script is designed to make your life easier by helping you remove TeamViewer from Windows computers using a startup Group Policy Object (GPO). It's like saying goodbye to TeamViewer with a click of a button.
 
-1. Forcefully terminates any running TeamViewer processes.
-2. Uninstalls TeamViewer silently.
-3. Removes residual files and registry entries.
+Here's what this script does for you:
+
+1. **Terminate Like a Pro**: It forcefully terminates any running TeamViewer processes. Say goodbye to those pesky background tasks!
+
+2. **Silent Uninstall**: It silently uninstalls TeamViewer, sparing you from those annoying uninstaller prompts.
+
+3. **Clean Slate**: It cleans up residual files and registry entries, leaving your computer squeaky clean.
 
 ## Prerequisites
 
-Before deploying this script, ensure the following:
+Before you embark on your TeamViewer-removing adventure, make sure you've got the following:
 
-- **Administrator Privileges**: The script must be executed with administrative privileges to ensure proper removal of TeamViewer.
+- **Administrator Privileges**: This script needs to be run with administrator privileges. Don't worry; we've got you covered!
 
 ## Usage
 
-Follow these steps to deploy the script as a startup GPO:
+Let's get started with a step-by-step guide:
 
-1. **Download the Script**: Download the `Remove-TeamViewer.ps1` script to your administrative computer.
+1. **Download the Script**: First, grab the `Remove-TeamViewer.ps1` script from this repository and save it on your trusty administrative computer.
 
-2. **Edit the Script**: Open the script using a text editor and ensure that the following variables are correctly configured:
+2. **Edit with Care**: Open the script in your favorite text editor (or choose the fanciest one). Make sure to check the following variable:
 
-   - `$uninstallerPath`: Verify that this variable points to the correct path of TeamViewer's uninstaller (`uninstall.exe`).
+   - `$uninstallerPath`: Ensure it points to TeamViewer's uninstaller (`uninstall.exe`) correctly.
 
-3. **Create a GPO**:
+3. **GPO Magic**:
 
-   - Open the Group Policy Management Console (GPMC) on your domain controller.
-   - Create a new GPO or select an existing one that you want to use for deploying the script.
+   - Fire up the Group Policy Management Console (GPMC) on your domain controller. It's where the magic begins!
 
-4. **Add the Script to the GPO**:
+   - Create a new GPO or pick an existing one that you want to use for deploying the script.
+
+4. **Add the Script**:
 
    - Navigate to the GPO's "Computer Configuration" > "Policies" > "Windows Settings" > "Scripts (Startup/Shutdown)".
+
    - Double-click "Startup" to edit the startup scripts.
-   - Click "Add" and browse to the location of the `Remove-TeamViewer.ps1` script.
-   - Click "OK" to add the script.
+
+   - Click "Add," and like a skilled explorer, find the `Remove-TeamViewer.ps1` script.
+
+   - Click "OK" to add the script like a boss!
 
 5. **Apply the GPO**:
 
-   - Link the GPO to the Organizational Unit (OU) containing the target computer objects.
-   - Ensure that the GPO is correctly applied to the target computers.
+   - Link the GPO to the Organizational Unit (OU) that houses the target computer objects.
+
+   - Make sure the GPO applies correctly to the computers you're targeting.
 
 6. **Deploy the GPO**:
 
-   - Wait for Group Policy to refresh on the target computers (or force a refresh manually using `gpupdate /force`).
-   - The script will run at startup, removing TeamViewer silently.
+   - Let's give it some time. Wait for Group Policy to refresh on your target computers, or use some IT magic with `gpupdate /force`.
 
-7. **Monitor Execution**:
+   - Watch the script do its thing at startup, silently removing TeamViewer. It's like a ninja!
 
-   - You can monitor the script's execution and check for errors in the Windows Event Viewer on the target computers.
+7. **Keep an Eye on It**:
+
+   - Curious to know what's happening? Check out the Windows Event Viewer on your target computers. It might spill some secrets!
 
 ## Notes
 
-- This script is designed for removing TeamViewer from Windows computers. Ensure that it's used responsibly and in compliance with your organization's policies.
+- Remember, this script is designed for Windows computers and TeamViewer removal. Please use it responsibly and follow your organization's policies.
 
-- Be cautious when using startup GPOs, as they can affect system startup times. Test the script in a controlled environment before deploying it widely.
+- Startup GPOs can affect system startup times, so test the script in a controlled environment before going all-in.
 
-- Always backup important data before running scripts that modify or uninstall software.
+- Always have a backup of important data before running scripts that tinker with software.
 
 ## Troubleshooting
 
-If you encounter issues or need assistance, refer to the troubleshooting section in the script or seek help from your IT team or community forums.
+If you run into any issues or need help, check out the troubleshooting section in the script or reach out to your IT team or friendly community forums. You're not alone on this journey!
+
+Now, go forth and conquer TeamViewer removal with confidence! 🚀
