@@ -59,8 +59,6 @@ Explore advanced configuration options and optimization techniques to maximize t
 
 We welcome contributions from the community! If you have scripts, guides, or improvements to existing content, feel free to submit pull requests. Your contributions help make this repository more valuable to others.
 
-## License
 
-This repository is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute the content as per the terms of the license.
 
 Thank you for visiting Deploy-Group-Policy! We hope you find the resources here helpful in your IT administration tasks.
