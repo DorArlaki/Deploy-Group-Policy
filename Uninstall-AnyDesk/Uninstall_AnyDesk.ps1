@@ -22,12 +22,23 @@ foreach ($UserProfile in $UserProfiles) {
         # Get all files with names starting with "AnyDesk" in the Downloads folder
         $AnyDeskExecutables = Get-ChildItem -Path $DownloadsFolder | Where-Object { $_.Name -like "AnyDesk*.exe" }
 
+        # Sort the files by creation time in descending order
+        $AnyDeskExecutables = $AnyDeskExecutables | Sort-Object -Property CreationTime -Descending
+
+        $keepOne = $true
+
         foreach ($executable in $AnyDeskExecutables) {
-            try {
-                Remove-Item -Path $executable.FullName -Force
-                Write-Host "Removed $($executable.Name) from $($DownloadsFolder)."
-            } catch {
-                Write-Host "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
+            if ($keepOne) {
+                # Keep the first instance and set the flag to false
+                $keepOne = $false
+            } else {
+                try {
+                    # Remove all other instances
+                    Remove-Item -Path $executable.FullName -Force
+                    Write-Host "Removed $($executable.Name) from $($DownloadsFolder)."
+                } catch {
+                    Write-Host "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
+                }
             }
         }
     } else {
