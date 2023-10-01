@@ -18,7 +18,6 @@ To deploy this script via Group Policy, you'll need to create a shared folder on
    - Ensure that "Domain Computers" has the following permissions:
      - Read
 ![SharingTabAll](https://github.com/DorArlaki/Deploy-Group-Policy/assets/107101354/533dec68-f8d9-4ea9-8eae-affc09c701f5)
-
 3. **Set Security Permissions**:
 
    - Navigate to the "Security" tab.
