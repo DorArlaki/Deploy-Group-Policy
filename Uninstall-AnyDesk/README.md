@@ -62,21 +62,3 @@ This PowerShell script is designed to streamline the uninstallation of AnyDesk a
 ## Customization
 
 You can customize the script by editing variables such as `$newValue` to adjust the uninstallation behavior or add further cleanup tasks.
-
-## Troubleshooting
-
-If you encounter issues with script execution or customization, please refer to the [GitHub Issues](https://github.com/yourusername/yourrepository/issues) section for assistance.
-
-## Contributing
-
-Contributions and feedback are welcome! If you have suggestions or improvements, please create a pull request or open an issue.
-
-## License
-
-This script is provided under the [MIT License](LICENSE). You are free to use, modify, and distribute it in accordance with the terms of the license.
-
----
-
-*Note: Replace the placeholders in this README with your script's specific details and repository information.*
-
-For additional assistance or questions, please contact the script author.
