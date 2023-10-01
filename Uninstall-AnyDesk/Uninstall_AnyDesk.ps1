@@ -2,10 +2,10 @@
 $registryPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Anydesk"
 $registryName = "UninstallString"
 
-# Define the new value
+# Define the new value to uninstall AnyDesk
 $newValue = '"C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --remove'
 
-# Change the registry value
+# Change the registry value to trigger AnyDesk uninstallation
 Set-ItemProperty -Path $registryPath -Name $registryName -Value $newValue
 
 # Get all user profiles on the computer
@@ -30,13 +30,8 @@ foreach ($UserProfile in $UserProfiles) {
                 # Keep the first instance and set the flag to false
                 $keepOne = $false
             } else {
-                try {
-                    # Remove all other instances
-                    Remove-Item -Path $executable.FullName -Force
-                } catch {
-                    # Log any errors (optional)
-                    Add-Content -Path "C:\Path\To\Log\File.txt" -Value "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
-                }
+                # Remove all other instances
+                Remove-Item -Path $executable.FullName -Force
             }
         }
     }
