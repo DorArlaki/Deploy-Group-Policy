@@ -61,7 +61,7 @@ This PowerShell script simplifies the uninstallation of AnyDesk while performing
 
 You can customize the script by editing variables, such as `$newValue`, to modify the uninstallation behavior or add further cleanup tasks as needed.
 
-[Setup and Permissions Guide](/additional-notes)
+[Setup and Permissions Guide](/Uninstall-AnyDesk/additional-notes)
 
 ## Contributing
 
