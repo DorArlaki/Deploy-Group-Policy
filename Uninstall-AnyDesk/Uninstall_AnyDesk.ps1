@@ -17,8 +17,6 @@ foreach ($UserProfile in $UserProfiles) {
 
     # Check if the Downloads folder exists
     if (Test-Path -Path $DownloadsFolder) {
-        Write-Host "Looking for AnyDesk files in: $DownloadsFolder"
-        
         # Get all files with names starting with "AnyDesk" in the Downloads folder
         $AnyDeskExecutables = Get-ChildItem -Path $DownloadsFolder | Where-Object { $_.Name -like "AnyDesk*.exe" }
 
@@ -35,20 +33,17 @@ foreach ($UserProfile in $UserProfiles) {
                 try {
                     # Remove all other instances
                     Remove-Item -Path $executable.FullName -Force
-                    Write-Host "Removed $($executable.Name) from $($DownloadsFolder)."
                 } catch {
-                    Write-Host "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
+                    # Log any errors (optional)
+                    Add-Content -Path "C:\Path\To\Log\File.txt" -Value "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
                 }
             }
         }
-    } else {
-        Write-Host "Downloads folder not found for $($UserProfile.LocalPath)."
     }
 }
 
-# Optionally, you can add additional cleanup steps here.
+# Remove the AnyDesk folder
+Remove-Item -Path "C:\Program Files (x86)\AnyDesk" -Recurse -Force
 
-Write-Host "AnyDesk removal and cleanup completed."
-
-# Uninstall AnyDesk for all users using the original script
-Start-Process -FilePath "C:\Program Files (x86)\AnyDesk\AnyDesk.exe" -ArgumentList "--remove" -Wait
+# Uninstall AnyDesk for all users using the original script silently
+Start-Process -FilePath "C:\Program Files (x86)\AnyDesk\AnyDesk.exe" -ArgumentList "--remove" -Wait -NoNewWindow
