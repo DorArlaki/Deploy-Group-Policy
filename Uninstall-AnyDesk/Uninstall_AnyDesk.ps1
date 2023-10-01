@@ -8,22 +8,36 @@ $newValue = '"C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --remove'
 # Change the registry value
 Set-ItemProperty -Path $registryPath -Name $registryName -Value $newValue
 
-# Get a list of user profiles
-$profiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }
+# Get all user profiles on the computer
+$UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }
 
-# Loop through user profiles
-foreach ($profile in $profiles) {
-    $downloadFolder = Join-Path -Path $profile.LocalPath -ChildPath 'Downloads'
-    $anydeskFiles = Get-ChildItem -Path $downloadFolder -Filter 'AnyDesk.exe'
+foreach ($UserProfile in $UserProfiles) {
+    # Define the path to the user's Downloads folder
+    $DownloadsFolder = Join-Path -Path $UserProfile.LocalPath -ChildPath "Downloads"
 
-    # Check if there is more than one AnyDesk.exe in the Downloads folder
-    if ($anydeskFiles.Count -gt 1) {
-        # Remove all but one instance of AnyDesk.exe
-        $anydeskFiles | Select-Object -Skip 1 | ForEach-Object {
-            Remove-Item -Path $_.FullName -Force
+    # Check if the Downloads folder exists
+    if (Test-Path -Path $DownloadsFolder) {
+        Write-Host "Looking for AnyDesk files in: $DownloadsFolder"
+        
+        # Get all files with names starting with "AnyDesk" in the Downloads folder
+        $AnyDeskExecutables = Get-ChildItem -Path $DownloadsFolder | Where-Object { $_.Name -like "AnyDesk*.exe" }
+
+        foreach ($executable in $AnyDeskExecutables) {
+            try {
+                Remove-Item -Path $executable.FullName -Force
+                Write-Host "Removed $($executable.Name) from $($DownloadsFolder)."
+            } catch {
+                Write-Host "Error removing $($executable.Name) from $($DownloadsFolder): $($_.Exception.Message)"
+            }
         }
+    } else {
+        Write-Host "Downloads folder not found for $($UserProfile.LocalPath)."
     }
 }
+
+# Optionally, you can add additional cleanup steps here.
+
+Write-Host "AnyDesk removal and cleanup completed."
 
 # Uninstall AnyDesk for all users using the original script
 Start-Process -FilePath "C:\Program Files (x86)\AnyDesk\AnyDesk.exe" -ArgumentList "--remove" -Wait
