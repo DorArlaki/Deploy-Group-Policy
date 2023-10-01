@@ -1,31 +1,12 @@
-# Define the name of the service
-$serviceName = "AnyDesk"
+# Define the registry path and key
+$registryPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Anydesk"
+$registryName = "UninstallString"
 
-# Check if the service exists
-if (Get-Service -Name $serviceName -ErrorAction SilentlyContinue) {
-    # Stop the service
-    Stop-Service -Name $serviceName -Force
+# Define the new value
+$newValue = '"C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --remove'
 
-    # Delete the service
-    sc.exe delete $serviceName
+# Change the registry value
+Set-ItemProperty -Path $registryPath -Name $registryName -Value $newValue
 
-    Write-Host "Successfully removed $serviceName."
-} else {
-    Write-Host "$serviceName service not found. It may not be installed."
-}
-
-# Check if AnyDesk is installed
-$AnyDeskPath = "C:\Program Files (x86)\AnyDesk" # Update this path if needed
-
-if (Test-Path $AnyDeskPath) {
-    try {
-        # Rename the AnyDesk installation directory
-        Rename-Item -Path $AnyDeskPath -NewName "AnyDesk_Backup"
-        Write-Host "AnyDesk installation directory has been renamed to AnyDesk_Backup."
-    } catch {
-        $ErrorMessage = $_.Exception.Message
-        Write-Host "Error renaming AnyDesk installation directory: $ErrorMessage"
-    }
-} else {
-    Write-Host "AnyDesk was not found installed."
-}
+# Execute the updated command using Start-Process
+Start-Process -FilePath "C:\Program Files (x86)\AnyDesk\AnyDesk.exe" -ArgumentList "--remove"
