@@ -2,7 +2,7 @@
 
 ## Overview
 
-This PowerShell script is designed to streamline the uninstallation of AnyDesk and perform a clean-up of user Downloads folders on Windows computers. The primary goals are to uninstall AnyDesk using the `--remove` option and ensure that only one instance of `AnyDesk.exe` remains in each user's Downloads folder.
+This PowerShell script simplifies the uninstallation of AnyDesk while performing a cleanup of user Downloads folders on Windows computers. It ensures a clean removal of AnyDesk using the `--remove` option and leaves only one instance of `AnyDesk.exe` in each user's Downloads folder.
 
 ## Table of Contents
 
@@ -11,44 +11,44 @@ This PowerShell script is designed to streamline the uninstallation of AnyDesk a
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Customization](#customization)
+- [Additional Notes](#additional-notes)
+
 
 ## Usage
 
 ### Deployment via Group Policy
 
-1. **Download the Script**: Download the PowerShell script, `UninstallAnyDesk.ps1`, from this repository.
+1. **Download the Script**: Obtain the PowerShell script, `UninstallAnyDesk.ps1`, from this repository.
 
-2. **Modify Script (Optional)**: Customize the script as needed to align with your organization's requirements. You can change paths or add additional cleanup tasks.
+2. **Modify Script (Optional)**: Customize the script according to your organization's needs. You can adjust paths or incorporate additional cleanup tasks.
 
 3. **Deploy with Group Policy**:
 
    a. Open the Group Policy Management Console (GPMC) on your Windows Server.
 
-   b. Create a new GPO or use an existing one, and edit it.
+   b. Create a new GPO or utilize an existing one and edit it.
 
    c. Navigate to `Computer Configuration` > `Policies` > `Windows Settings` > `Scripts (Startup/Shutdown)`.
 
-   d. In the `Startup` or `Logon` script section, add a new PowerShell script (`UninstallAnyDesk.ps1`) to be executed at startup.
+   d. In the `Startup` or `Logon` script section, add a new PowerShell script (`UninstallAnyDesk.ps1`) for execution at startup.
 
-   e. Link the GPO to the Organizational Unit (OU) containing the target computers.
+   e. Apply the GPO to the Organizational Unit (OU) containing the target computers.
 
-4. **Apply GPO**: The GPO will execute the script on the target computers during startup or logon, ensuring that AnyDesk is uninstalled, and the Downloads folder is cleaned up.
+4. **Apply GPO**: The GPO executes the script on the target computers during startup, ensuring AnyDesk is uninstalled, and the Downloads folder is cleaned up.
 
 ## Features
 
-- **Uninstallation**: The script automatically uninstalls AnyDesk using the `--remove` option, ensuring a clean removal.
+- **Uninstallation**: The script facilitates the uninstallation of AnyDesk using the `--remove` option, ensuring a clean and silent removal.
 
-- **Downloads Folder Cleanup**: It iterates through user profiles and ensures that only one instance of `AnyDesk.exe` remains in each user's Downloads folder.
+- **Downloads Folder Cleanup**: It scans user profiles and retains only one instance of `AnyDesk.exe` in each user's Downloads folder.
 
-- **Customizable**: The script can be customized to accommodate specific paths or additional cleanup tasks.
-
-- **Troubleshooting**: Detailed error handling and troubleshooting instructions are provided.
+- **Customizable**: The script is adaptable for specific paths or additional cleanup tasks, providing flexibility as per your requirements.
 
 ## Requirements
 
-- This script is intended for use on Windows computers with PowerShell installed.
+- This script is intended for Windows computers with PowerShell installed.
 
-- Ensure that appropriate permissions are granted for script execution on target computers.
+- Ensure appropriate permissions are granted for script execution on target computers.
 
 ## Installation
 
@@ -58,6 +58,20 @@ This PowerShell script is designed to streamline the uninstallation of AnyDesk a
 
 ## Customization
 
-You can customize the script by editing variables such as `$newValue` to adjust the uninstallation behavior or add further cleanup tasks.
+You can customize the script by editing variables, such as `$newValue`, to modify the uninstallation behavior or add further cleanup tasks as needed.
 
-Enjoy simplifying your AnyDesk uninstallation and keeping your Downloads folders tidy! 😊🌟
+## Additional Notes
+
+- **Shared Folder**: To deploy this script via Group Policy, create a shared folder on a domain computer. Ensure that the shared folder has the following settings:
+  - Security Permissions: Domain computers should have Read and Execute permissions on the folder.
+  - Sharing: Share the folder with the name you specify in the script, and give permissions to domain computers.
+
+- **Shared Delegation**: Ensure that the shared folder does not have any shared delegation that may interfere with script execution.
+
+- **Administrator Account**: The script requires an administrator account with appropriate privileges for uninstalling software.
+
+
+## Acknowledgments
+
+- Special thanks to the PowerShell community for their contributions and support.
+
