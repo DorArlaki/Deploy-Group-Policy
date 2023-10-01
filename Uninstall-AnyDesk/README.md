@@ -12,7 +12,8 @@ This PowerShell script simplifies the uninstallation of AnyDesk while performing
 - [Installation](#installation)
 - [Customization](#customization)
 - [Additional Notes](#additional-notes)
-
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Usage
 
@@ -60,16 +61,15 @@ This PowerShell script simplifies the uninstallation of AnyDesk while performing
 
 You can customize the script by editing variables, such as `$newValue`, to modify the uninstallation behavior or add further cleanup tasks as needed.
 
-## Additional Notes
+[Setup and Permissions Guide](#additional-notes)
 
-- **Shared Folder**: To deploy this script via Group Policy, create a shared folder on a domain computer. Ensure that the shared folder has the following settings:
-  - Security Permissions: Domain computers should have Read and Execute permissions on the folder.
-  - Sharing: Share the folder with the name you specify in the script, and give permissions to domain computers.
+## Contributing
 
-- **Shared Delegation**: Ensure that the shared folder does not have any shared delegation that may interfere with script execution.
+Contributions to enhance this script or address issues are welcome. Please open an issue or create a pull request with your proposed changes.
 
-- **Administrator Account**: The script requires an administrator account with appropriate privileges for uninstalling software.
+## License
 
+This script is provided under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
