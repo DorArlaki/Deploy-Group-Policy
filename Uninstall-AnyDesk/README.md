@@ -11,9 +11,6 @@ This PowerShell script is designed to streamline the uninstallation of AnyDesk a
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Customization](#customization)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Usage
 
@@ -62,3 +59,5 @@ This PowerShell script is designed to streamline the uninstallation of AnyDesk a
 ## Customization
 
 You can customize the script by editing variables such as `$newValue` to adjust the uninstallation behavior or add further cleanup tasks.
+
+Enjoy simplifying your AnyDesk uninstallation and keeping your Downloads folders tidy! 😊🌟
