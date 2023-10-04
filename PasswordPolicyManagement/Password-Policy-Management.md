@@ -20,3 +20,28 @@ Before running this script, ensure the following prerequisites are met:
 
    ```powershell
    Import-Module ActiveDirectory
+   ```
+### Usage
+
+    - Clone or download this repository to your local machine.
+
+    - Open PowerShell as an administrator.
+
+    - Navigate to the folder containing the script.
+
+    - Run the script:
+   ```powershell
+    .\UpdatePasswordPolicy.ps1
+   ```
+
+    The script will execute and update the password policies for all domain users.
+
+### `Important Note
+
+Please use this script with caution, as it can affect all users in your Active Directory domain. It's recommended to test the script in a non-production environment first.
+
+Feel free to contribute, report issues, or suggest improvements by creating GitHub issues or pull requests.
+
+Repository: Password Policy Management
+
+This script is provided as-is without any warranty. Use it at your own risk.
