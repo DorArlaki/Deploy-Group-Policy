@@ -1,4 +1,4 @@
-# Option Number 1 :
+# Option Number 1 - hostname Fillter:
 ### Use this Query, Change hostname for the ones you `Wants` to apply the GPO 
 ```sql
 SELECT * FROM Win32_ComputerSystem WHERE Name = 'PC-004' OR Name = 'PC-005'
