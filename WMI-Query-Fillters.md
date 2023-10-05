@@ -1,4 +1,4 @@
-# Option 1 :
+# Option Number 1 :
 ### Use this Query, Change hostname for the ones you `Wants` to apply the GPO 
 ```sql
 SELECT * FROM Win32_ComputerSystem WHERE Name = 'PC-004' OR Name = 'PC-005'
@@ -8,4 +8,4 @@ SELECT * FROM Win32_ComputerSystem WHERE Name = 'PC-004' OR Name = 'PC-005'
 SELECT * FROM Win32_ComputerSystem WHERE NOT (Name = 'PC-004' OR Name = 'PC-005')
 ```
 
-# Option 2:
+# Option Number 2:
