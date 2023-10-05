@@ -7,5 +7,3 @@ SELECT * FROM Win32_ComputerSystem WHERE Name = 'PC-004' OR Name = 'PC-005'
 ```sql
 SELECT * FROM Win32_ComputerSystem WHERE NOT (Name = 'PC-004' OR Name = 'PC-005')
 ```
-
-# Option 2:
