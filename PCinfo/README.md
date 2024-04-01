@@ -1,29 +1,15 @@
 # PCinfo.ps1
 
-PCinfo.ps1 is a PowerShell script designed to gather system information from Windows computers and log any errors encountered during execution.
+PCinfo.ps1 is a PowerShell script designed to gather system information from Windows computers and log any errors encountered during execution. It is intended to be deployed as a Group Policy Object (GPO) and executed by domain computers.
 
 ## Description
 
 This script collects various system information, including hostname, operating system version, CPU details, and RAM size, and exports the data to a CSV file named "PCinfo.csv". Additionally, it logs any errors encountered during execution to a separate file named "ErrorLog.txt".
 
-## Usage
+## Deployment as a Group Policy Object (GPO)
 
-1. Ensure PowerShell is enabled on the target Windows computers.
-2. Copy the PCinfo.ps1 script to a location accessible by the target computers.
-3. Edit the script to specify the desired folder path for storing the CSV and log files.
-4. Run the script on the target computers either manually or through a scheduled task.
-
-```powershell
-# Example usage:
-.\PCinfo.ps1
-```
-
-# Requirements
-
-    Windows operating system with PowerShell enabled.
-    Sufficient permissions to run PowerShell scripts and access system information.
-
-# Important Notes
-
-    Ensure that the folder specified for storing CSV and log files is accessible and has appropriate permissions set.
-    Review and customize the script as needed to fit your specific requirements.
+1. Copy the PCinfo.ps1 script to a shared network folder accessible by domain computers. Ensure that only domain computers have permissions to access this folder.
+2. Create a new Group Policy Object (GPO) or edit an existing one.
+3. Configure the GPO to run the PCinfo.ps1 script as a startup or logon script for domain computers.
+4. Link the GPO to an Organizational Unit (OU) containing the desired domain computers.
+5. Ensure that the folder specified for storing CSV and log files has appropriate permissions set for domain computers to write data.
