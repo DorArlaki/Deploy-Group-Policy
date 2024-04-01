@@ -12,6 +12,12 @@ function Log-Error {
     $ErrorLog | Out-File -FilePath $logFilePath -Append
 }
 
+# Function to get display name from environment variable
+function Get-DisplayName {
+    $displayName = $env:USERPROFILE.split("\")[2]
+    return $displayName
+}
+
 # Try block to handle errors gracefully
 try {
     # Gather system information
@@ -27,8 +33,7 @@ try {
     $ramSizeFormatted = "$ramSizeGB GB"
 
     # Get the logged-in user's display name from environment variables
-    $loggedInUser = $env:USERNAME
-    $displayName = $env:USERPROFILE.split("\")[2]
+    $displayName = Get-DisplayName
 
     # Construct CSV data
     $csvData = [PSCustomObject]@{
