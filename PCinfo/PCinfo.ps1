@@ -1,5 +1,5 @@
 # Set folder path for CSV and log files
-$folderPath = "\\10.0.0.10\Share"
+$folderPath = "\\Server\Share\Folder"
 $logFilePath = Join-Path -Path $folderPath -ChildPath "ErrorLog.txt"
 
 # Function to log errors
@@ -10,12 +10,6 @@ function Log-Error {
     $CurrentDateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $ErrorLog = "$CurrentDateTime - $ErrorMessage"
     $ErrorLog | Out-File -FilePath $logFilePath -Append
-}
-
-# Function to get display name from environment variable
-function Get-DisplayName {
-    $displayName = $env:USERPROFILE.split("\")[2]
-    return $displayName
 }
 
 # Try block to handle errors gracefully
@@ -32,13 +26,13 @@ try {
     $ramSizeGB = [math]::Round($systemInfo.TotalPhysicalMemory / 1GB, 0)
     $ramSizeFormatted = "$ramSizeGB GB"
 
-    # Get the logged-in user's display name from environment variables
-    $displayName = Get-DisplayName
+    # Get the PrimaryOwnerName instead of DisplayName
+    $PrimaryOwnerName = $systemInfo.PrimaryOwnerName
 
     # Construct CSV data
     $csvData = [PSCustomObject]@{
         Hostname = $systemInfo.Name
-        DisplayName = $displayName
+        PrimaryOwnerName = $PrimaryOwnerName
         Version = "$($osInfo.Version) ($osName)"
         CPU = $cpuInfo.Name
         RAM = $ramSizeFormatted
